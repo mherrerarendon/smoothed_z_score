@@ -1,6 +1,7 @@
 #[derive(Clone, Copy, PartialEq, Debug)]
 pub enum Peak {
     Low,
+    None,
     High,
 }
 
@@ -32,7 +33,7 @@ impl PeaksDetector {
                 Some(if value > mean { Peak::High } else { Peak::Low })
             } else {
                 self.window.push(value);
-                None
+                Some(Peak::None)
             }
         } else {
             None
